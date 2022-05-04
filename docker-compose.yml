@@ -1,0 +1,19 @@
+version: '3'
+services:
+  api:
+    container_name: webapi
+    restart: always
+    build: webapi
+    ports:
+      - '5255:80'
+    links:
+      - noobsqlserver
+  noobsqlserver:
+    container_name: noobsqlserver
+    build: sqlserver
+    ports:
+      - '1433:1433'
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Izzy6274+
+      - MSSQL_PID=Express
